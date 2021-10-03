@@ -1,5 +1,5 @@
-#Парсер сайтів міських рад. 
-##Java версія
+# Парсер сайтів міських рад. 
+## Java версія
 
 Для збірки потрібні:
 1. [OpenJDK-13](https://www.debugpoint.com/2020/04/install-latest-java-14-in-ubuntu-18-04-20-04-linux-mint/)
