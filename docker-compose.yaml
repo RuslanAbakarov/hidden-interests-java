@@ -1,0 +1,8 @@
+version: '1.0'
+services:
+  hij:
+    build:
+      context: ./
+    env_file:
+      - ".env"
+    command: bash -c "java -jar hidden-interests-dl-0.0.1-jar-with-dependencies.jar CHERKASY_PLENARY_SESSION"
