@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class App {
 	static final Logger logger = Logger.getLogger("App");
-	static final String URL = "https://interes.shtab.net/api/document/detect";
+	static final String URL = "https://interes.shtab.net/api/document/detect/";
 	static final String API_KEY = System.getenv("RADA_API_KEY");
 
 	static final HttpClient client = HttpClient.newBuilder().build();
