@@ -12,6 +12,12 @@ public final class LoaderFactory {
 			return new CherkasyByNameVotingLoader();
 		default:
 			return null;
-		} 
+		}
+	}
+
+	public static void showLoaderList() {
+		System.out.println("Available loaders");
+		System.out.println(CherkasyPlenarySessionLoader.NAME); // Черкаси. Протоколи пленарних засідань сесій
+		System.out.println(CherkasyByNameVotingLoader.NAME); // Черкаси. Поіменне голосування міської ради;
 	}
 }
