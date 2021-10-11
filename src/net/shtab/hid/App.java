@@ -3,7 +3,7 @@ package net.shtab.hid;
 import java.util.Timer;
 
 public class App {
-	static final int TIMEOUT = 3600;
+	private static final int TIMEOUT = 3600;
 
 	public static void main(String[] args) {
 		if (args.length == 0) {
@@ -13,9 +13,11 @@ public class App {
 		}
 		
 		System.setProperty("java.util.logging.SimpleFormatter.format", "[%1$tF %1$tT] [%4$-7s] %5$s %n");
-		LoadTask task = new LoadTask(args);
-		if (!task.isReady())
+		LoadTask task = new LoadTask(args, TIMEOUT);
+		if (!task.isReady()) {
+			System.out.println("Timer task was not initialized. Program terminated");
 			System.exit(0);
+		}
 		
 		new Timer().scheduleAtFixedRate(task, 0, TIMEOUT * 1000);
 	}

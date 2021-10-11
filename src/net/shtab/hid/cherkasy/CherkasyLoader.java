@@ -47,9 +47,9 @@ public abstract class CherkasyLoader implements Loader {
 
 	@Override
 	public void close() {
-		currentPage = null;
 		pageFiles.clear();
 		pageFiles = null;
+		currentPage = null;
 		logger.info(getName() + " -> closed");
 	}
 

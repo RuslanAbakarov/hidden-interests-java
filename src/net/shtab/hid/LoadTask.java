@@ -19,9 +19,11 @@ public class LoadTask extends TimerTask {
 	private final String URL = "https://interes.shtab.net/api/document/detect/";
 
 	private String[] loaders;
+	private int timeout;
 
-	public LoadTask(String[] loaders) {
+	public LoadTask(String[] loaders, int timeout) {
 		this.loaders = loaders;
+		this.timeout = timeout;
 		if (loaders.length <= 0) {
 			logger.warning("Loaders list is empty");
 		}
@@ -44,12 +46,16 @@ public class LoadTask extends TimerTask {
 		for (int i = 0; i < loaders.length; i++) {
 			Loader loader = LoaderFactory.factory(loaders[i]);
 			if (null == loader) {
-				logger.info("No implementation for " + loaders[i]);
+				logger.warning("No implementation for " + loaders[i]);
+				continue;
 			} else {
 				logger.info(loader.getName() + " starting =======>");
 			}
 
-			loader.init();
+			if (!loader.init()) {
+				logger.warning(loader.getName() + " was not initizlized");
+				continue;
+			}
 			while (loader.hasNext()) {
 				LoaderDocument doc = loader.next();
 				if (null == doc.link) {
@@ -62,7 +68,8 @@ public class LoadTask extends TimerTask {
 			}
 			loader.close();
 		}
-		logger.info("<----- Task finished. Next execution planned in " + App.TIMEOUT + " seconds");
+		
+		logger.info("<====== Task finished. Next execution planned in " + timeout + " seconds");
 
 	}
 
